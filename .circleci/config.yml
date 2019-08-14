@@ -2,7 +2,7 @@ version: 2.0
 
 workflows:
   version: 2
-  test_and_build:
+  test_and_package:
     jobs:
       - test
       - package:
@@ -19,6 +19,10 @@ jobs:
           command: gradle test
       - store_test_results: #Circle CI
           path: build/test-results
+      - persist_to_workspace:
+          root: .
+          paths:
+            - null
   package:
     docker:
       - image: circleci/openjdk:8-jdk
@@ -30,4 +34,6 @@ jobs:
       - store_artifacts: #Circle CI
           path: build/libs
           destination: prefix
+      - attach_workspace:
+          at: .
       
