@@ -55,14 +55,14 @@ public class GildedRoseTest {
     @Test
     public void item_quality_is_never_negative() {
         Item[] items = new Item[] {
-            new Item("+5 Dexterity Vest", 10, 0), //
-            new Item("Aged Brie", 2, 0), //
+            new Item("+5 Dexterity Vest", 10, 2), //
+            new Item("Aged Brie", 2, 3), //
                 new Item("Elixir of the Mongoose", 5, 1), //
                 new Item("Sulfuras, Hand of Ragnaros", 0, 2), //
                 new Item("Sulfuras, Hand of Ragnaros", -1, 3),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 15, 0),
                 new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 2),
                 // this conjured item does not work properly yet
                 new Item("Conjured Mana Cake", 3, 0) };
             GildedRose app = new GildedRose(items);
