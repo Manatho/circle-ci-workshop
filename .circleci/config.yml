@@ -27,13 +27,13 @@ jobs:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
-      - checkout #Circle CI
+      - attach_workspace:
+          at: .
       - run:
           name: The second step
           command: gradle jar
       - store_artifacts: #Circle CI
           path: build/libs
           destination: prefix
-      - attach_workspace:
-          at: .
+      
       
