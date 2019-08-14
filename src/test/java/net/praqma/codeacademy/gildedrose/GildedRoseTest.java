@@ -71,9 +71,6 @@ public class GildedRoseTest {
             for(Item item : items){
                 assertTrue("Item qualitaly never drops below 0",app.items[0].quality>=0 );
             }
-            
-        
-        };
     }
 
 }
