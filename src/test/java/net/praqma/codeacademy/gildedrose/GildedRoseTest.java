@@ -41,4 +41,18 @@ public class GildedRoseTest {
         assertEquals("Sulfuras should be unchangeed", items[0].quality, 80);
         assertEquals("Sulfuras (-1) should be unchangeed", items[1].quality, 80);
     }
+
+    @test
+    public void post_selldate_degration {
+        Item[] items = new Item[] {
+            new Item("test", -1, 2)
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+            assertTrue("Item should degrade twice as fast on passing expiration date",app.items[0].quality==0 );
+        
+        };
+
+    }
+
+
 }
