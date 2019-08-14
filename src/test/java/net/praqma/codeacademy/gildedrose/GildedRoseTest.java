@@ -50,8 +50,6 @@ public class GildedRoseTest {
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertTrue("Item should degrade twice as fast on passing expiration date",app.items[0].quality==0 );
-        
-        };
     }
 
     @test
