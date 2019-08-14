@@ -8,6 +8,9 @@ workflows:
       - package:
           requires: 
           - test
+      - dockerize:
+          requires:
+            - package
 jobs:
   test:
     docker:
@@ -15,14 +18,14 @@ jobs:
     steps:
       - checkout #Circle CI
       - run:
-          name: The First Step
+          name: Testerized
           command: gradle test
       - store_test_results: #Circle CI
           path: build/test-results
       - persist_to_workspace:
           root: .
           paths:
-            - null
+            - .
   package:
     docker:
       - image: circleci/openjdk:8-jdk
@@ -30,10 +33,28 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: The second step
+          name: Jarishered
           command: gradle jar
       - store_artifacts: #Circle CI
           path: build/libs
           destination: prefix
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  dockerize:
+    machine: true
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+     # build the application image
+      - run: docker build -t $DOCKER_USER/myapp:$CIRCLE_SHA1 .
+     # deploy the image
+      - run: docker push $DOCKER_USER/myapp:$CIRCLE_SHA1
+
+  
+
       
       
