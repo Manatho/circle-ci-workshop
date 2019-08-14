@@ -17,9 +17,6 @@ jobs:
       - run:
           name: The First Step
           command: gradle test
-      - run:
-          name: The second step
-          command: gradle jar
       - store_test_results: #Circle CI
           path: build/test-results
   package:
