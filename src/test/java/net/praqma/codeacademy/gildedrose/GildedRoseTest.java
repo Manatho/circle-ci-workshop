@@ -46,7 +46,7 @@ public class GildedRoseTest {
     public void post_selldate_degration() {
         Item[] items = new Item[] {
             new Item("test", -1, 2)
-        }
+        };
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertTrue("Item should degrade twice as fast on passing expiration date",app.items[0].quality==0 );
