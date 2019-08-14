@@ -19,8 +19,16 @@ public class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertTrue("brie is a higher quality",app.items[0].quality>1 );
-        
     }
+
+    @Test
+    public void backstage_passes() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 1) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertTrue("backstage is a higher quality",app.items[0].quality>1 );
+    }
+
     @Test
     public void never_over_50() {
         Item[] items = new Item[] { new Item("Aged Brie", 0, 50) };
