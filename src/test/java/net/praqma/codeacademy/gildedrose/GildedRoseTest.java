@@ -29,4 +29,16 @@ public class GildedRoseTest {
         assertTrue("brie is higher quality than it should be able to",app.items[0].quality==50 );
         
     }
+
+    @Test
+    public void sulfuras_quality_static() {
+        Item[] items = new Item[] {
+            new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+            new Item("Sulfuras, Hand of Ragnaros", -1, 80)
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Sulfuras should be unchangeed", items[0].quality, 80);
+        assertEquals("Sulfuras (-1) should be unchangeed", items[1].quality, 80);
+    }
 }
