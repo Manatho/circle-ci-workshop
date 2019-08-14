@@ -46,6 +46,7 @@ public class GildedRoseTest {
     public void post_selldate_degration() {
         Item[] items = new Item[] {
             new Item("test", -1, 2)
+        }
             GildedRose app = new GildedRose(items);
             app.updateQuality();
             assertTrue("Item should degrade twice as fast on passing expiration date",app.items[0].quality==0 );
@@ -53,5 +54,27 @@ public class GildedRoseTest {
         };
     }
 
+    @test
+    public void item_quality_is_never_negative() {
+        new Item("+5 Dexterity Vest", 10, 0), //
+                new Item("Aged Brie", 2, 0), //
+                new Item("Elixir of the Mongoose", 5, 0), //
+                new Item("Sulfuras, Hand of Ragnaros", 0, 0), //
+                new Item("Sulfuras, Hand of Ragnaros", -1, 0),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 0),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0),
+                // this conjured item does not work properly yet
+                new Item("Conjured Mana Cake", 3, 0) };
+            GildedRose app = new GildedRose(items);
+            app.updateQuality();
+
+            for(Item item : items){
+                assertTrue("Item qualitaly never drops below 0",app.items[0].quality>=0 );
+            }
+            
+        
+        };
+    }
 
 }
