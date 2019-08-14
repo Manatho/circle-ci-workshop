@@ -53,6 +53,7 @@ jobs:
       - run: docker build -t $DOCKER_USER/myapp:$CIRCLE_SHA1 .
      # deploy the image
       - run: docker push $DOCKER_USER/myapp:$CIRCLE_SHA1
+      - run: docker push $DOCKER_USER/myapp:latest
 
   
 
